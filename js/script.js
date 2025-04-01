@@ -135,6 +135,22 @@ const previousImage = () => {
 
 }
 
+// funzione che salta all'immagine del tooltip quando clicco su di esso
+const jumpTo = (thumb, pos) => {
+  thumb.addEventListener("click", () => {
+  images[activeImage].classList.remove('active');
+  thumbs[activeImage].classList.remove('bright');
+  thumbs[activeImage].classList.add('dark');
+
+  activeImage = pos - 1;
+
+  images[activeImage].classList.add('active');
+  thumbs[activeImage].classList.remove('dark');
+  thumbs[activeImage].classList.add('bright');
+  })
+
+}
+
 
 // CORPO DEL PROGRAMMA
 
@@ -160,10 +176,23 @@ thumbs[activeImage].classList.add('bright');
 const nextButton = document.querySelector('.fa-arrow-right');
 const leftButton = document.querySelector('.fa-arrow-left');
 
+// autoplay
+const intervalId = setInterval(nextImage, 2000);
+
 nextButton.addEventListener('click', nextImage);
 
 leftButton.addEventListener('click', previousImage);
 
+// recupero i riquadri dei singoli thumbnails
+const firstThumb = thumbs[0];
+const secondThumb = thumbs[1];
+const thirdThumb = thumbs[2];
+const fourthThumb = thumbs[3];
+const fifthThumb = thumbs[4];
 
-// autoplay
-const intervalId = setInterval(nextImage, 2000);
+jumpTo(firstThumb, 1)
+jumpTo(secondThumb, 2)
+jumpTo(thirdThumb, 3)
+jumpTo(fourthThumb, 4)
+jumpTo(fifthThumb, 5)
+
