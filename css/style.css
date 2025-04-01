@@ -7,7 +7,6 @@
 #carousel {
     display: flex;
     align-items: center;
-    height: 500px;
 }
 
 #carousel i {
@@ -34,16 +33,28 @@
 
 .gallery img {
     width: 100%;
+    height: fit-content;
     border-radius: 20px;
+    aspect-ratio: 16/9;
 }
 
 .gallery figcaption {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 0px;
+    right: 0px;
+    padding: 0px 20px 50px 0px;
     text-align: right;
     color: #fff;
     text-shadow: 0 0 5px black;
+}
+
+figcaption h2{
+    font-weight: 700;
+    font-size: 24px;
+}
+
+figcaption h3{
+    font-size: 18px;
 }
 
 #thumbnails .row {
@@ -53,6 +64,8 @@
 
 #thumbnails img {
     border-radius: 10px;
+    object-fit: cover;
+    aspect-ratio: 16/9;
 }
 
 #thumbnails img.bright {

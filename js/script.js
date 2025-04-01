@@ -45,6 +45,22 @@ const pics = [
 
   }
 
+// funzione che mi crea un thumbnail
+const createThumb = (galleryImage) => {
+  // destrutturiamo il parametro passato nelle sue proprietà
+  const { image } = galleryImage;
+
+  // credo l'html dell'immagine da inserire
+  let img = `<div class="col">
+                    <figure>
+                        <img src="./${image}" alt="" class="w-100 dark">
+                    </figure>
+              </div>`;
+
+  return img;
+
+}  
+
 //   definizione della funzione che va a ciclare l'array ed a creare le immagini a partire da questo nell'html
 const renderImages = (array) => {
 
@@ -59,6 +75,22 @@ const renderImages = (array) => {
     }
 
     gallery.innerHTML = images;
+}
+
+// definizione della funzione che va a ciclare l'array ed a creare i thumbnails a partire da questo nell'html 
+const renderThumb = (array) => {
+
+  // creo la variabile vuota che mi servirà per contenere tutte le immagini
+  let images = '';
+  // recupero la gallery dal dom
+  const gallery = document.querySelector('#thumbnails .row');
+
+  // ciclo l'array
+  for(let i=0; i<array.length; i++){
+      images += createThumb(array[i]);
+  }
+
+  gallery.innerHTML = images;
 }
 
 // funzione che mi manda avanti le immagini da vedere
@@ -96,17 +128,26 @@ const previousImage = () => {
 
 }
 
+
 // CORPO DEL PROGRAMMA
 
 // siamo andati a renderizzare tutte le immagini
 renderImages(pics);
 
+// render dei thumbnails
+renderThumb(pics);
+
 // definisco il valore inziale del mio indice
 let activeImage = 0;
 // // vado a prendere tutte le immagini dal dom
 const images = document.querySelectorAll('#carousel figure');
-// aggiungo all'elemento con indice 0 dell'array images la classe active
+// recupero i thumbnail dal dom
+const thumbs = document.querySelectorAll('#thumbnails .col figure img'); 
+// aggiungo all'elemento di gallery con indice 0 dell'array images la classe active
 images[activeImage].classList.add('active');
+// aggiungo all'elemento di thumbnails con indice 0 dell'array images la classe bright e rimuovo la classe dark
+thumbs[activeImage].classList.remove('dark');
+thumbs[activeImage].classList.add('bright');
 
 // recuperiamo i pulsanti
 const nextButton = document.querySelector('.fa-arrow-right');
@@ -115,6 +156,7 @@ const leftButton = document.querySelector('.fa-arrow-left');
 nextButton.addEventListener('click', nextImage);
 
 leftButton.addEventListener('click', previousImage);
+
 
 // autoplay
 const intervalId = setInterval(nextImage, 2000);
