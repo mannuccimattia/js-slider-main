@@ -212,3 +212,5 @@ pauseBtn.addEventListener("click",()=>{
   }
 })
 
+// LA PAUSA NON RIMANE DOPO NEXT/PREV/JUMPTO IMAGE
+

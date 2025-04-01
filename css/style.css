@@ -17,6 +17,12 @@
     cursor: pointer;
 }
 
+#carousel > i:hover{
+    -webkit-box-shadow: 0px 0px 10px 2px #fff;
+    box-shadow: 0px 0px 10px 2px #fff;
+    color: #fff;
+}
+
 .gallery {
     width: 100%;
     margin: 30px;
@@ -95,5 +101,12 @@ figcaption h3{
 #thumbnails img.dark {
     filter: grayscale(100%);
     cursor: pointer;
+}
+
+#thumbnails img.dark:hover {
+    filter: grayscale(100%);
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 10px 2px #fff;
+    box-shadow: 0px 0px 10px 2px #fff;
 }
 
