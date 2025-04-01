@@ -138,15 +138,15 @@ const previousImage = () => {
 // funzione che salta all'immagine del tooltip quando clicco su di esso
 const jumpTo = (thumb, pos) => {
   thumb.addEventListener("click", () => {
-  images[activeImage].classList.remove('active');
-  thumbs[activeImage].classList.remove('bright');
-  thumbs[activeImage].classList.add('dark');
+    images[activeImage].classList.remove('active');
+    thumbs[activeImage].classList.remove('bright');
+    thumbs[activeImage].classList.add('dark');
 
-  activeImage = pos - 1;
+    activeImage = pos - 1;
 
-  images[activeImage].classList.add('active');
-  thumbs[activeImage].classList.remove('dark');
-  thumbs[activeImage].classList.add('bright');
+    images[activeImage].classList.add('active');
+    thumbs[activeImage].classList.remove('dark');
+    thumbs[activeImage].classList.add('bright');
   })
 
 }
@@ -177,7 +177,7 @@ const nextButton = document.querySelector('.fa-arrow-right');
 const leftButton = document.querySelector('.fa-arrow-left');
 
 // autoplay
-const intervalId = setInterval(nextImage, 2000);
+var intervalId = setInterval(nextImage, 4000);
 
 nextButton.addEventListener('click', nextImage);
 
@@ -195,4 +195,20 @@ jumpTo(secondThumb, 2)
 jumpTo(thirdThumb, 3)
 jumpTo(fourthThumb, 4)
 jumpTo(fifthThumb, 5)
+
+// recupero il pulsante di pausa
+const pauseBtn = document.getElementById("pause");
+// 
+pauseBtn.addEventListener("click",()=>{
+  let paused = pauseBtn.classList.contains("fa-play-circle")
+  // console.log(paused)
+  if(!paused){
+    clearInterval(intervalId);
+    pauseBtn.classList.replace("fa-pause-circle", "fa-play-circle");
+  }
+  else{
+    setInterval(nextImage, 4000);
+    pauseBtn.classList.replace("fa-play-circle", "fa-pause-circle");
+  }
+})
 
